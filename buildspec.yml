@@ -15,6 +15,7 @@ phases:
     commands:
       - echo Deployment started
       - echo Deploying with the serveless Framework
+      - export SLS_DEBUG=*
       - sls deploy -v -s dev
   post_build:
     commands:
