@@ -3,12 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing Yarn
-      - npm install -g yarn
       - echo Installing Serveless
       - npm install -g serveless
       - echo Install source NPM dependencies ...
-      - yarn
+      - npm install
   build:
     commands:
       - echo Deployment started
@@ -18,3 +16,7 @@ phases:
   post_build:
     commands:
       - echo Deployment completed
+
+cache:
+  paths:
+    - node_modules
