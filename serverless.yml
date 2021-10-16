@@ -1,0 +1,51 @@
+service: 38scj-fiap-cloud-devlopment
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: "20201221"
+  region: us-east-2
+  environment:
+    JWT_TOKEN: 4uNwmxyDW0ZZpCFtIsiMhOrwypIYkDXXY
+    TABLE_USERS: users
+  iamRoleStatements:
+     - Effect: Allow
+      Action:
+          - dynamodb:Query
+          - dynamodb:Scan
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          - dynamodb:DeleteItem
+          - dynamodb:BatchWriteItem
+      Resource: 
+        - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TABLE_USERS}"
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 4002
+
+functions:
+  register:
+    handler: src/routers/user/register.registerUser
+    events:
+      - http:
+          path: /register
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - dna
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false

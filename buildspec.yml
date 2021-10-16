@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Yarn
+      - npm install -g yarn
+      - echo Installing Serveless
+      - npm install -g serveless
+  pre_build:
+    commands:
+      - echo Install source NPM dependencies ...
+      - yarn
+  build:
+    commands:
+      - echo Deployment started
+      - echo Deploying with the serveless Framework
+      - sls deploy -v -s dev
+  post_build:
+    commands:
+      - echo Deployment completed
