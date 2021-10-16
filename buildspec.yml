@@ -14,7 +14,7 @@ phases:
       - echo Deployment started
       - echo Deploying with the serveless Framework
       - export SLS_DEBUG=*
-      - serverless deploy --stage dev | tee deploy.out
+      - sls deploy -s dev
   post_build:
     commands:
       - echo Deployment completed
