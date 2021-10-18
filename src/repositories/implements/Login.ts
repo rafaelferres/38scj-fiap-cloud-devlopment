@@ -1,6 +1,6 @@
 import { ILogin } from "../ILogin";
 import { dynamo } from "../../libs/dynamo";
-import sha1 from 'sha1'
+import * as sha1 from 'sha1'
 
 export class Login implements ILogin{
     async login(email: string, password: string): Promise<boolean> {

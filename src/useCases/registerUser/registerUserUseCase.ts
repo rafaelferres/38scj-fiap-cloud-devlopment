@@ -23,7 +23,7 @@ export class RegisterUserUseCase {
                   "Access-Control-Allow-Origin": "*",
                   "Access-Control-Allow-Credentials": true
                 },
-                body: JSON.stringify({status: false, ...e}),
+                body: JSON.stringify({status: false, message: e.message}),
             })
         }
     }
