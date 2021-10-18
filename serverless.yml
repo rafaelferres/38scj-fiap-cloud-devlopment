@@ -1,4 +1,4 @@
-service: 38scj-fiap-cloud-devlopment
+service: scj-fiap-cloud-devlopment
 
 frameworkVersion: "2"
 
@@ -11,15 +11,15 @@ provider:
     JWT_TOKEN: 4uNwmxyDW0ZZpCFtIsiMhOrwypIYkDXXY
     TABLE_USERS: users
   iamRoleStatements:
-     - Effect: Allow
+    - Effect: Allow
       Action:
-          - dynamodb:Query
-          - dynamodb:Scan
-          - dynamodb:GetItem
-          - dynamodb:PutItem
-          - dynamodb:UpdateItem
-          - dynamodb:DeleteItem
-          - dynamodb:BatchWriteItem
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:BatchWriteItem
       Resource: 
         - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.TABLE_USERS}"
 
@@ -37,6 +37,23 @@ functions:
     events:
       - http:
           path: /register
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - dna
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
+  login:
+    handler: src/routers/user/login.loginUser
+    events:
+      - http:
+          path: /login
           method: post
           cors:
             origin: '*'

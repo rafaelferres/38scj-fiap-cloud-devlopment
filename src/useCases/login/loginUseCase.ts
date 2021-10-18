@@ -1,11 +1,11 @@
-import { IRegisterUser } from "../../repositories/IRegisterUser";
+import { ILogin } from "../../repositories/ILogin";
 
-export class RegisterUserUseCase {
-    constructor(private registerUser: IRegisterUser){}
+export class LoginUseCase {
+    constructor(private login: ILogin){}
 
     async execute(payload: { email: string, password: string }, callback: any){
         try{
-            await this.registerUser.register(payload.email, payload.password)
+            await this.login.login(payload.email, payload.password)
             callback(null, {
                 statusCode: 200,
                 headers: {
