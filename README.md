@@ -1,6 +1,6 @@
 # 38scj-fiap-cloud-devlopment
 ##### Sistema de registro e login de usuários
-#####Tecnologias utilizadas: CodePipeline, CodeBuild, Dynamo, Serveless e Api Gatway
+##### Tecnologias utilizadas: CodePipeline, CodeBuild, Dynamo, Serveless e Api Gatway
 
 ## link para a app
 ##### https://f1h51zkz2d.execute-api.us-east-2.amazonaws.com/prod
